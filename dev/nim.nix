@@ -1,4 +1,4 @@
-{ buildPythonPackage, fetchPypi, python311Packages, lib, version}:
+{ buildPythonPackage, fetchPypi }:
 
 buildPythonPackage rec {
     pname = "nvidia-nim";

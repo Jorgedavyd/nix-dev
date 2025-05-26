@@ -2,11 +2,11 @@
 
 buildPythonPackage rec {
     pname = "nvidia-physicsnemo";
-    version = "v1.0.1";
+    version = "1.0.1";
     format = "wheel";
     src = fetchPypi {
         inherit pname version format;
-        sha256 = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"; # Replace with actual SHA256
+        sha256 = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         dist = "python";
         python = "py3";
     };
