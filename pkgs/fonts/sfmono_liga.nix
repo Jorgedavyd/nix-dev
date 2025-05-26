@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub }:
+{ stdenv, fetchFromGitHub, lib, enableWindowsFonts ? false }:
 
 stdenv.mkDerivation {
     pname = "liga-sfmono";
@@ -12,12 +12,19 @@ stdenv.mkDerivation {
     };
 
     installPhase = ''
-    mkdir -p $out/share/fonts/opentype
-    cp *.otf $out/share/fonts/opentype/
+  mkdir -p $out/share/fonts/opentype/NerdFonts
+  mkdir -p $out/share/fonts/truetype/NerdFonts
+
+  find . -name '*.otf' -exec mv {} $out/share/fonts/opentype/NerdFonts/ \;
+  find . -name '*.ttf' -exec mv {} $out/share/fonts/truetype/NerdFonts/ \;
+
+  ${lib.optionalString (!enableWindowsFonts) ''
+    rm -rfv $out/share/fonts/opentype/NerdFonts/*Windows\ Compatible.*
+    rm -rfv $out/share/fonts/truetype/NerdFonts/*Windows\ Compatible.*
+        ''}
     '';
 
     dontConfigure = true;
-    dontUnpack = true;
     dontBuild = true;
 
     meta = {
