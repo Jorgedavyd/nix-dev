@@ -9,7 +9,11 @@
     outputs = { self, nixpkgs, flake-utils }:
         flake-utils.lib.eachDefaultSystem (system:
             let
-                pkgs = nixpkgs.legacyPackages.${system};
+                pkgs = import nixpkgs {
+                    inherit system;
+                    config.allowUnfree = true;
+                };
+
                 customPackages = {
                     sfmono-liga = pkgs.callPackage ./pkgs/fonts/sfmono_liga.nix {};
                     blexmono-liga = pkgs.callPackage ./pkgs/fonts/blexmono_liga.nix {};
@@ -19,9 +23,9 @@
                     nvidia_physicsnemo = pkgs.callPackage ./dev/physicsnemo.nix {};
                     starstream = pkgs.callPackage ./dev/starstream.nix {};
                 };
-            in
-                {
+            in {
                 packages = customPackages;
+                defaultPackage = customPackages.lightorch;
                 overlays.default = final: prev: customPackages;
             }
         ) // {
