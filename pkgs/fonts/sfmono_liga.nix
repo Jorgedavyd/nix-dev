@@ -8,7 +8,7 @@ stdenv.mkDerivation {
         owner = "shaunsingh";
         repo = "SFMono-Nerd-Font-Ligaturized";
         rev = "main";
-        sha256 = "sha256-0000000000000000000000000000000000000000000=";
+        sha256 = lib.fakeSha256;
     };
 
     installPhase = ''

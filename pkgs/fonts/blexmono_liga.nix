@@ -6,7 +6,7 @@ stdenv.mkDerivation {
 
     src = fetchurl {
         url = "https://github.com/tdarshana/Blex-Mono-Liga-Powerline/releases/download/rel-v0.1/ligalex-mono-powerline.zip";
-        sha256 = "REPLACE_WITH_REAL_HASH";
+        sha256 = "0h64yhx5rgyfnx85ll3hxjdfaqi7rjicf3ncfj42yh28q0vfqs3s";
     };
 
     nativeBuildInputs = [ unzip ];
