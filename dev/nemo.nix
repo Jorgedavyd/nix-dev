@@ -1,8 +1,8 @@
 { buildPythonPackage, fetchPypi }:
 
 buildPythonPackage rec {
-    pname = "nemo_toolkit";
-    version = "v2.3.1";
+    pname = "nemo-toolkit";
+    version = "2.3.1";
     format = "wheel";
     src = fetchPypi {
         inherit pname version format;
