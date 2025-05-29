@@ -27,10 +27,10 @@ stdenv.mkDerivation {
     dontConfigure = true;
     dontBuild = true;
 
-    meta = {
+    meta = with lib; {
         description = "San Francisco Mono Nerd Font with Ligatures";
         homepage = "https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized";
-        license = stdenv.lib.licenses.unfree;
-        platforms = stdenv.lib.platforms.all;
+        license = licenses.unfree;
+        platforms = platforms.unix;
     };
 }

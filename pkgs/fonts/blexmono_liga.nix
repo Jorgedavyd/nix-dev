@@ -28,10 +28,10 @@ stdenv.mkDerivation {
     dontConfigure = true;
     dontBuild = true;
 
-    meta = {
+    meta = with lib; {
         description = "Plex Mono Font Ligaturized with Powerline support";
         homepage = "https://github.com/tdarshana/Blex-Mono-Liga-Powerline";
-        license = lib.licenses.unfree;
-        platforms = lib.platforms.all;
+        license = licenses.unfree;
+        platforms = platforms.all;
     };
 }
