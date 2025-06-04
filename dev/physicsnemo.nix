@@ -1,4 +1,4 @@
-{ fetchPypi, buildPythonPackage }:
+{ fetchPypi, buildPythonPackage, lib }:
 
 buildPythonPackage rec {
     pname = "nvidia-physicsnemo";
@@ -6,7 +6,7 @@ buildPythonPackage rec {
     format = "wheel";
     src = fetchPypi {
         inherit pname version format;
-        sha256 = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+        sha256 = lib.fakeSha256;
         dist = "python";
         python = "py3";
     };

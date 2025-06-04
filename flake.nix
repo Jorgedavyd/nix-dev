@@ -15,6 +15,7 @@
                 lightorch = final.callPackage ./dev/lightorch.nix {};
                 nvidia_nemo = final.callPackage ./dev/nemo.nix {};
                 nvidia_physicsnemo = final.callPackage ./dev/physicsnemo.nix {};
+                nvidia_nemo_guardrails = final.callPackage ./dev/nemo_guardrails.nix {};
                 starstream = final.callPackage ./dev/starstream.nix {};
             };
         in
