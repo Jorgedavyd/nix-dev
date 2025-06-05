@@ -4,7 +4,6 @@ stdenv,
 py-pkgs,
 fetchFromGitHub,
 pythonOlder,
-build,
 git,
 pytest-cov-stub,
 pytest-mock,
@@ -30,7 +29,7 @@ py-pkgs.buildPythonPackage rec {
     };
 
     nativeCheckInputs = [
-        build
+        py-pkgs.build
         git
         pytest-mock
         pytest-cov-stub
