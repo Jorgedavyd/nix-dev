@@ -1,4 +1,4 @@
-{ lib, py-pkgs, gcc }:
+{ lib, py-pkgs }:
 
 py-pkgs.buildPythonPackage rec {
   pname = "nemo-guardrails";
@@ -13,19 +13,7 @@ py-pkgs.buildPythonPackage rec {
   };
 
   nativeBuildInputs = [
-    gcc
     py-pkgs.setuptools
-  ];
-
-  propagatedBuildInputs = with py-pkgs; [
-    langchain
-    pydantic
-    requests
-    aiohttp
-    click
-    typing-extensions
-    pyyaml
-    annoy
   ];
 
   doCheck = false;
