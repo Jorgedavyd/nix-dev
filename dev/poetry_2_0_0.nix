@@ -4,14 +4,7 @@ stdenv,
 py-pkgs,
 fetchFromGitHub,
 pythonOlder,
-git,
-pytest-cov-stub,
-pytest-mock,
-pytestCheckHook,
-setuptools,
-tomli-w,
-trove-classifiers,
-virtualenv,
+git
 }:
 
 py-pkgs.buildPythonPackage rec {
@@ -28,8 +21,8 @@ py-pkgs.buildPythonPackage rec {
         hash = "sha256-fNj/LI4A4RjjPzYT+0ekwqmm3qzzZL3aACOe8BHviuk=";
     };
 
-    nativeCheckInputs = [
-        py-pkgs.build
+    nativeCheckInputs = with py-pkgs; [
+        build
         git
         pytest-mock
         pytest-cov-stub
