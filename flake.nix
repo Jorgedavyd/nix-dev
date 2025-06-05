@@ -34,6 +34,7 @@
                         corkit
                         lightorch
                         nvidia_nemo
+                        nvidia_nemo_guardrails
                         nvidia_physicsnemo
                         starstream;
                     };
