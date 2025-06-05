@@ -8,16 +8,20 @@
 
     outputs = { self, nixpkgs, flake-utils }:
         let
-            overlay = final: prev: {
-                sfmono-liga = final.callPackage ./pkgs/fonts/sfmono_liga.nix {};
-                blexmono-liga = final.callPackage ./pkgs/fonts/blexmono_liga.nix {};
-                corkit = final.callPackage ./dev/corkit.nix {};
-                lightorch = final.callPackage ./dev/lightorch.nix {};
-                nvidia_nemo = final.callPackage ./dev/nemo.nix {};
-                nvidia_physicsnemo = final.callPackage ./dev/physicsnemo.nix {};
-                nvidia_nemo_guardrails = final.callPackage ./dev/nemo_guardrails.nix {};
-                starstream = final.callPackage ./dev/starstream.nix {};
-            };
+            overlay = final: prev:
+                let
+                    py-pkgs = final.python312Packages;
+                in
+                    {
+                    sfmono-liga = final.callPackage ./pkgs/fonts/sfmono_liga.nix {};
+                    blexmono-liga = final.callPackage ./pkgs/fonts/blexmono_liga.nix {};
+                    corkit = final.callPackage ./dev/corkit.nix { py-pkgs = py-pkgs; };
+                    lightorch = final.callPackage ./dev/lightorch.nix { py-pkgs = py-pkgs; };
+                    nvidia_nemo = final.callPackage ./dev/nemo.nix {py-pkgs = py-pkgs;};
+                    nvidia_physicsnemo = final.callPackage ./dev/physicsnemo.nix {py-pkgs = py-pkgs;};
+                    nvidia_nemo_guardrails = final.callPackage ./dev/nemo_guardrails.nix {py-pkgs = py-pkgs;};
+                    starstream = final.callPackage ./dev/starstream.nix {py-pkgs = py-pkgs;};
+                };
         in
             flake-utils.lib.eachDefaultSystem (system:
                 let

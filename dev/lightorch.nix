@@ -1,6 +1,6 @@
-{ lib, buildPythonPackage, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
-buildPythonPackage rec {
+py-pkgs.buildPythonPackage rec {
     pname = "lightorch";
     version = "0.0.6";
     src = fetchFromGitHub {

@@ -1,10 +1,10 @@
-{ fetchPypi, buildPythonPackage, lib }:
+{ py-pkgs, lib }:
 
-buildPythonPackage rec {
+py-pkgs.buildPythonPackage rec {
     pname = "nvidia-physicsnemo";
     version = "1.0.1";
     format = "wheel";
-    src = fetchPypi {
+    src = py-pkgs.fetchPypi {
         inherit pname version format;
         sha256 = lib.fakeSha256;
         dist = "python";

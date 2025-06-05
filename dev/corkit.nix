@@ -1,6 +1,6 @@
-{ lib, buildPythonPackage, fetchFromGitHub }:
+{ lib, python312Packages, fetchFromGitHub }:
 
-buildPythonPackage rec {
+python312Packages.buildPythonPackage rec {
     pname = "corkit";
     version = "1.0.16";
     src = fetchFromGitHub {

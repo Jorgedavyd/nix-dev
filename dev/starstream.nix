@@ -1,6 +1,6 @@
-{ lib, buildPythonPackage, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
-buildPythonPackage rec {
+py-pkgs.buildPythonPackage rec {
     pname = "starstream";
     version = "1.1.3";
     src = fetchFromGitHub {
