@@ -13,6 +13,7 @@ py-pkgs.buildPythonPackage rec {
     nativeBuildInputs = with py-pkgs; [
         gcc
         annoy
+        wheel
     ];
 
     doCheck = false;
