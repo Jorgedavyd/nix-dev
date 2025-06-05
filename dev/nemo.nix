@@ -1,10 +1,10 @@
 { py-pkgs, lib }:
 
-python312Packages.buildPythonPackage rec {
+py-pkgs.buildPythonPackage rec {
     pname = "nemo-toolkit";
     version = "2.3.1";
     format = "wheel";
-    src = python312Packages.fetchPypi {
+    src = py-pkgs.fetchPypi {
         inherit pname version format;
         sha256 = lib.fakeSha256; # Replace with actual SHA256
         dist = "python";

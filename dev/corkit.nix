@@ -1,6 +1,6 @@
-{ lib, python312Packages, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
-python312Packages.buildPythonPackage rec {
+py-pkgs.buildPythonPackage rec {
     pname = "corkit";
     version = "1.0.16";
     src = fetchFromGitHub {
