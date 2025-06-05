@@ -2,7 +2,7 @@
 
 py-pkgs.buildPythonPackage rec {
     pname = "nemo-guardrails";
-    version = "v0.14.0";
+    version = "0.13.0";
     format = "pyproject";
 
     src = py-pkgs.fetchPypi {
