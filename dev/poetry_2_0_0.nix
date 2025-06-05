@@ -8,7 +8,7 @@ git
 
 py-pkgs.buildPythonPackage rec {
     pname = "poetry-core";
-    version = "2.0.0";
+    version = "1.9.0";
     pyproject = true;
 
     src = fetchFromGitHub {
