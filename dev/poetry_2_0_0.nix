@@ -1,7 +1,7 @@
 {
 lib,
 stdenv,
-buildPythonPackage,
+py-pkgs,
 fetchFromGitHub,
 pythonOlder,
 build,
@@ -15,7 +15,7 @@ trove-classifiers,
 virtualenv,
 }:
 
-buildPythonPackage rec {
+py-pkgs.buildPythonPackage rec {
     pname = "poetry-core";
     version = "2.0.0";
     pyproject = true;
