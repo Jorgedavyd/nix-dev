@@ -14,6 +14,7 @@ py-pkgs.buildPythonPackage rec {
 
     nativeBuildInputs = with py-pkgs; [
         poetry-core
+        poetry
         wheel
     ];
 
