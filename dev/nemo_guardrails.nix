@@ -1,11 +1,11 @@
-{ lib, py-pkgs }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
 py-pkgs.buildPythonPackage rec {
   pname = "nemo-guardrails";
   version = "0.14.0";
   format = "pyproject";
 
-  src = py-pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "NVIDIA";
     repo = "NeMo-Guardrails";
     rev = "v${version}";
