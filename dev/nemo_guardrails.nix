@@ -1,8 +1,8 @@
 { lib, py-pkgs, gcc }:
 
 py-pkgs.buildPythonPackage rec {
-    pname = "nemo-guardrails";
-    version = "v0.13.0";
+    pname = "nemoguardrails";
+    version = "0.14.0";
     format = "pyproject";
 
     src = py-pkgs.fetchPypi {
