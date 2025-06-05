@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub, poetry-core }:
+{ lib, py-pkgs, fetchFromGitHub, gcc }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "nemo-guardrails";
@@ -13,8 +13,8 @@ py-pkgs.buildPythonPackage rec {
     };
 
     nativeBuildInputs = [
+        gcc
         py-pkgs.wheel
-        poetry-core
     ];
 
     doCheck = false;
