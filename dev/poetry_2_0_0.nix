@@ -3,7 +3,6 @@ lib,
 stdenv,
 py-pkgs,
 fetchFromGitHub,
-pythonOlder,
 git
 }:
 
@@ -11,8 +10,6 @@ py-pkgs.buildPythonPackage rec {
     pname = "poetry-core";
     version = "2.0.0";
     pyproject = true;
-
-    disabled = pythonOlder "3.9";
 
     src = fetchFromGitHub {
         owner = "python-poetry";
@@ -23,6 +20,7 @@ py-pkgs.buildPythonPackage rec {
 
     nativeCheckInputs = with py-pkgs; [
         build
+        annoy
         git
         pytest-mock
         pytest-cov-stub
