@@ -12,6 +12,7 @@ py-pkgs.buildPythonPackage rec {
         sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
     };
 
+    sourceRoot = "libs/milvus";
     doCheck = false;
 
     meta = with lib; {
