@@ -9,7 +9,7 @@ py-pkgs.buildPythonPackage rec {
         owner = "langchain-ai";
         repo = "langchain-milvus";
         rev = "libs/milvus/${version}";
-        sha256 = "sha256-L40r1OxG1QnWZIJa/c/jlApkuQ2Aqvj3In4y5hWzR9E=";
+        sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
     };
 
     doCheck = false;

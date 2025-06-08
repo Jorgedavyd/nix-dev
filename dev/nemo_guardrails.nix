@@ -1,12 +1,14 @@
-{ lib, py-pkgs, gcc }:
+{ lib, py-pkgs, gcc, fetchFromGitHub }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "nemoguardrails";
-    version = "0.14.0";
+    version = "v0.13.0";
     format = "pyproject";
 
-    src = py-pkgs.fetchPypi {
-        inherit pname version;
+    src = fetchFromGitHub {
+        owner = "NVIDIA";
+        repo = "NeMo-Guardrails";
+        rev = version;
         sha256 = "sha256-L40r1OxG1QnWZIJa/c/jlApkuQ2Aqvj3In4y5hWzR9E=";
     };
 
