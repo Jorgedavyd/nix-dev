@@ -7,7 +7,7 @@ py-pkgs.buildPythonPackage rec {
 
     src = fetchFromGitHub {
         owner = "langchain-ai";
-        repo = "https://github.com/langchain-ai/langchain-milvus.git";
+        repo = "langchain-milvus";
         rev = "libs/milvus/${version}";
         sha256 = "sha256-L40r1OxG1QnWZIJa/c/jlApkuQ2Aqvj3In4y5hWzR9E=";
     };
