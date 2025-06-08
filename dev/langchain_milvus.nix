@@ -13,6 +13,12 @@ py-pkgs.buildPythonPackage rec {
     };
 
     sourceRoot = "source/libs/milvus";
+
+    nativeBuildInputs = with py-pkgs; [
+        poetry-core
+        wheel
+    ];
+
     doCheck = false;
 
     meta = with lib; {
