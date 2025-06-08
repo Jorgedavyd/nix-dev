@@ -1,11 +1,11 @@
-{ lib, py-pkgs, fetchFromGithub }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langchain-milvus";
     version = "v0.2.0";
     format = "pyproject";
 
-    src = fetchFromGithub {
+    src = fetchFromGitHub {
         owner = "langchain-ai";
         repo = "https://github.com/langchain-ai/langchain-milvus.git#libs/milvus";
         rev = "libs/milvus/${version}";
