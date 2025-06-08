@@ -20,6 +20,7 @@
                     nvidia_nemo = final.callPackage ./dev/nemo.nix {py-pkgs = py-pkgs;};
                     nvidia_physicsnemo = final.callPackage ./dev/physicsnemo.nix {py-pkgs = py-pkgs;};
                     nvidia_nemo_guardrails = final.callPackage ./dev/nemo_guardrails.nix {py-pkgs = py-pkgs; };
+                    langchain_milvus = final.callPackage ./dev/langchain_milvus.nix {py-pkgs = py-pkgs; };
                     starstream = final.callPackage ./dev/starstream.nix {py-pkgs = py-pkgs;};
                 };
         in
@@ -40,6 +41,7 @@
                         nvidia_nemo
                         nvidia_nemo_guardrails
                         nvidia_physicsnemo
+                        langchain_milvus
                         starstream;
                     };
                 }

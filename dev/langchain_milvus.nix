@@ -1,4 +1,4 @@
-{ lib, py-pkgs, gcc }:
+{ lib, py-pkgs }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langchain-milvus";
