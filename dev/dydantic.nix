@@ -18,6 +18,7 @@ py-pkgs.buildPythonPackage rec {
 
     nativeBuildInputs = with py-pkgs; [
         poetry-core
+        pdm-backend
     ];
 
     doCheck = false;
