@@ -9,7 +9,7 @@ py-pkgs.buildPythonPackage rec {
         owner = "langchain-ai";
         repo = pname;
         rev = "7f0b33f85b03fd5bfe2cce838d5606583742bddb";
-        sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
+        sha256 = "sha256-gn4XGn2iuYxHeERbBpE5Rf/6eGdEJAGFXku2WRYX3I0=";
     };
 
     dependencies = with py-pkgs; [
@@ -32,5 +32,3 @@ py-pkgs.buildPythonPackage rec {
         platforms = platforms.all;
     };
 }
-
-
