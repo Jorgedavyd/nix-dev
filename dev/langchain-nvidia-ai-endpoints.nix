@@ -9,7 +9,7 @@ py-pkgs.buildPythonPackage rec {
         owner = "langchain-ai";
         repo = "langchain-nvidia";
         rev = version;
-        sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
+        sha256 = "sha256-WDdvdO9T7gbGeeSSSy8muu8zOT3FE6Z9VZwZgS2fK2I=";
     };
 
     sourceRoot = "source/libs/ai-endpoints";
