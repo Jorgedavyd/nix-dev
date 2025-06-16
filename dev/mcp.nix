@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub, git }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "mcp";
@@ -25,8 +25,10 @@ py-pkgs.buildPythonPackage rec {
     ];
 
     nativeBuildInputs = with py-pkgs; [
+        wheel
         hatchling
         uv-dynamic-versioning
+        git
     ];
 
     doCheck = false;
@@ -39,5 +41,3 @@ py-pkgs.buildPythonPackage rec {
         platforms = platforms.all;
     };
 }
-
-
