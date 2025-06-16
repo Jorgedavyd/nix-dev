@@ -16,7 +16,8 @@ py-pkgs.buildPythonPackage rec {
 
     dependencies = with py-pkgs; [
         langchain-core
-        pymilvus
+        aiohttp
+        filetype
     ];
 
     nativeBuildInputs = with py-pkgs; [

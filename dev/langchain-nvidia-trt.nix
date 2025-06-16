@@ -14,10 +14,11 @@ py-pkgs.buildPythonPackage rec {
 
     sourceRoot = "source/libs/trt";
 
-
     dependencies = with py-pkgs; [
         langchain-core
-        pymilvus
+        tritonclient
+        types-protobuf
+        protobuf
     ];
 
     nativeBuildInputs = with py-pkgs; [
@@ -35,5 +36,3 @@ py-pkgs.buildPythonPackage rec {
         platforms = platforms.all;
     };
 }
-
-
