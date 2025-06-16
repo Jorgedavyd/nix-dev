@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub, pkgs }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langgraph-swarm-py";
@@ -17,8 +17,8 @@ py-pkgs.buildPythonPackage rec {
         langgraph
     ];
 
-    nativeBuildInputs = with pkgs; [
-        pdm
+    nativeBuildInputs = with py-pkgs; [
+        pdm-backend
     ];
 
     doCheck = false;

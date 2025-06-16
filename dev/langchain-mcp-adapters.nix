@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub, pdm }:
+{ lib, py-pkgs, fetchFromGitHub }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langchain-mcp-adapters";
@@ -17,8 +17,8 @@ py-pkgs.buildPythonPackage rec {
         mcp
     ];
 
-    nativeBuildInputs = [
-        pdm
+    nativeBuildInputs = with py-pkgs; [
+        pdm-backend
     ];
 
     doCheck = false;
