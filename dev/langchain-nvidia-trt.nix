@@ -15,10 +15,10 @@ py-pkgs.buildPythonPackage rec {
     sourceRoot = "source/libs/trt";
 
     dependencies = with py-pkgs; [
-        langchain-core
         tritonclient
-        types-protobuf
-        protobuf
+        (langchain-core.overridePythonAttrs (_: { version = "0.1.50"; }))
+        (protobuf.overridePythonAttrs (_: { version = "3.20.3"; }))
+        (types-protobuf.overridePythonAttrs (_: { version = "4.24.0.4"; }))
     ];
 
     nativeBuildInputs = with py-pkgs; [
