@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub, pkgs }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langgraph-swarm-py";
@@ -9,17 +9,16 @@ py-pkgs.buildPythonPackage rec {
         owner = "langchain-ai";
         repo = pname;
         rev = version;
-        sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
+        sha256 = "sha256-iqnBmC4kvypUrKI2D1ud6hnvWe/MX/eyGkxf3phul+4=";
     };
 
     dependencies = with py-pkgs; [
         langchain-core
-        pymilvus
+        langgraph
     ];
 
-    nativeBuildInputs = with py-pkgs; [
-        poetry-core
-        wheel
+    nativeBuildInputs = with pkgs; [
+        pdm
     ];
 
     doCheck = false;
@@ -32,5 +31,3 @@ py-pkgs.buildPythonPackage rec {
         platforms = platforms.all;
     };
 }
-
-
