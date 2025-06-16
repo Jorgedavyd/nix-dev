@@ -29,8 +29,8 @@
                     langgraph-checkpoint = final.callPackage ./dev/langgraph-checkpoint.nix {py-pkgs = py-pkgs; };
                     langgraph-checkpoint-postgres = final.callPackage ./dev/langgraph-checkpoint-postgres.nix {py-pkgs = py-pkgs; };
                     langgraph-swarm = final.callPackage ./dev/langgraph-swarm.nix {py-pkgs = py-pkgs; };
-                    dydantic = final.callPackage ./dev/dydantic.nix {py-pkgs = py-pkgs; };
-                    trustcall = final.callPackage ./dev/trustcall.nix {py-pkgs = py-pkgs; dydantic = dydantic; };
+                    dydantic = final.callPackage ./dev/dydantic.nix {py-pkgs = py-pkgs; poetry2nix = poetry2nix; };
+                    trustcall = final.callPackage ./dev/trustcall.nix { poetry2nix = poetry2nix; };
                     langmem = final.callPackage ./dev/langmem.nix {py-pkgs = py-pkgs; langgraph-checkpoint = langgraph-checkpoint; trustcall = trustcall; };
                 };
         in
