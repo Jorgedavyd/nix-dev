@@ -1,34 +1,21 @@
-{ lib, py-pkgs, fetchFromGitHub, dydantic }:
+{ pkgs, poetry2nix }:
 
-py-pkgs.buildPythonPackage rec {
-    pname = "trustcall";
-    version = "d61267d366cd16aa95ebc90d62824e5c40f253bd";
-    format = "pyproject";
+poetry2nix.mkPoetryApplication {
+  pname = "trustcall";
+  version = "0.0.39";
 
-    src = fetchFromGitHub {
-        owner = "hinthornw";
-        repo = pname;
-        rev = version;
-        sha256 = "sha256-iqnBmC4kvypUrKI2D1ud6hnvWe/MX/eyGkxf3phul+4=";
-    };
+  projectDir = pkgs.fetchFromGitHub {
+    owner = "hinthornw";
+    repo = "trustcall";
+    rev = "d61267d366cd16aa95ebc90d62824e5c40f253bd";
+    sha256 = "sha256-iqnBmC4kvypUrKI2D1ud6hnvWe/MX/eyGkxf3phul+4=";
+  };
 
-    dependencies = with py-pkgs; [
-        langgraph
-        jsonpatch
-        dydantic
-    ];
+  doCheck = false;
 
-    nativeBuildInputs = with py-pkgs; [
-        pdm-backend
-    ];
-
-    doCheck = false;
-
-    meta = with lib; {
-        description = "A Python library for creating swarm-style multi-agent systems using LangGraph.";
-        homepage = "https://github.com/langchain-ai/langgraph-swarm-py";
-        license = licenses.mit;
-        maintainers = with maintainers; [ ];
-        platforms = platforms.all;
-    };
+  meta = {
+    description = "LLMs struggle when asked to generate or modify large JSON blobs. trustcall solves this by asking the LLM to generate JSON patch operations. This is a simpler task that can be done iteratively.";
+    homepage = "https://github.com/hinthornw/trustcall";
+    license = pkgs.lib.licenses.mit;
+  };
 }
