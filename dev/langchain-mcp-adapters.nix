@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub, pkgs }:
+{ lib, py-pkgs, fetchFromGitHub, pdm }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langchain-mcp-adapters";
@@ -17,7 +17,7 @@ py-pkgs.buildPythonPackage rec {
         mcp
     ];
 
-    nativeBuildInputs = with pkgs; [
+    nativeBuildInputs = [
         pdm
     ];
 
