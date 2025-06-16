@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub, langgraph-checkpoint }:
+{ lib, py-pkgs, fetchFromGitHub, langgraph-checkpoint, trustcall }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langmem";
