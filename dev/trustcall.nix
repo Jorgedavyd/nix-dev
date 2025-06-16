@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub, dydantic }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "trustcall";
