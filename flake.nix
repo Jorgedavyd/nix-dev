@@ -12,7 +12,7 @@
                 let
                     py-pkgs = final.python312Packages;
                 in
-                    {
+                    rec {
                     sfmono-liga = final.callPackage ./pkgs/fonts/sfmono-liga.nix {};
                     blexmono-liga = final.callPackage ./pkgs/fonts/blexmono-liga.nix {};
                     corkit = final.callPackage ./dev/corkit.nix { py-pkgs = py-pkgs; };
