@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub, pkgs }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langchain-mcp-adapters";
@@ -14,12 +14,11 @@ py-pkgs.buildPythonPackage rec {
 
     dependencies = with py-pkgs; [
         langchain-core
-        pymilvus
+        mcp
     ];
 
-    nativeBuildInputs = with py-pkgs; [
-        poetry-core
-        wheel
+    nativeBuildInputs = with pkgs; [
+        pdm
     ];
 
     doCheck = false;
