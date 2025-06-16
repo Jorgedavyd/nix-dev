@@ -9,7 +9,7 @@ py-pkgs.buildPythonPackage rec {
         owner = "modelcontextprotocol";
         repo = "python-sdk";
         rev = version;
-        sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
+        sha256 = "sha256-VXbu/wHbXGS+cISJVUgCVEpTmZc0VfckNRoMj3GDi/A=";
     };
 
     dependencies = with py-pkgs; [
