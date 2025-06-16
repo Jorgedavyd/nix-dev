@@ -7,7 +7,7 @@ py-pkgs.buildPythonPackage rec {
 
     src = fetchFromGitHub {
         owner = "langchain-ai";
-        repo = pname;
+        repo = "langchain-nvidia";
         rev = version;
         sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
     };
