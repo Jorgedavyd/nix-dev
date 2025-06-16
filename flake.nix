@@ -21,7 +21,8 @@
                     physicsnemo = final.callPackage ./dev/physicsnemo.nix {py-pkgs = py-pkgs;};
                     nemo-guardrails = final.callPackage ./dev/nemo-guardrails.nix {py-pkgs = py-pkgs; };
                     starstream = final.callPackage ./dev/starstream.nix {py-pkgs = py-pkgs;};
-                    langchain-mcp-adapters = final.callPackage ./dev/langchain-mcp-adapters.nix {py-pkgs = py-pkgs; };
+                    mcp = final.callPackage ./dev/mcp.nix {py-pkgs = py-pkgs;};
+                    langchain-mcp-adapters = final.callPackage ./dev/langchain-mcp-adapters.nix {py-pkgs = py-pkgs; mcp = mcp; };
                     langchain-milvus = final.callPackage ./dev/langchain-milvus.nix {py-pkgs = py-pkgs; };
                     langchain-nvidia-ai-endpoints = final.callPackage ./dev/langchain-nvidia-ai-endpoints.nix {py-pkgs = py-pkgs; };
                     langchain-nvidia-trt = final.callPackage ./dev/langchain-nvidia-trt.nix {py-pkgs = py-pkgs; };

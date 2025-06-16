@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub, mcp}:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langchain-mcp-adapters";
