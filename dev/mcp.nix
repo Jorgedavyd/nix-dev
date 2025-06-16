@@ -26,7 +26,7 @@ py-pkgs.buildPythonPackage rec {
 
     nativeBuildInputs = with py-pkgs; [
         hatchling
-        uv
+        uv-dynamic-versioning
     ];
 
     doCheck = false;
