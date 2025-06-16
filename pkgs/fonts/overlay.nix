@@ -1,4 +1,4 @@
 final: prev: {
-    sfmono-liga = final.callPackage ./fonts/sfmono_liga.nix {};
-    blexmono-liga = final.callPackage ./fonts/blexmono_liga.nix {};
+    sfmono-liga = final.callPackage ./fonts/sfmono-liga.nix {};
+    blexmono-liga = final.callPackage ./fonts/blexmono-liga.nix {};
 }

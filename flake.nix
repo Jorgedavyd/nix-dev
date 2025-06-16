@@ -13,15 +13,21 @@
                     py-pkgs = final.python312Packages;
                 in
                     {
-                    sfmono-liga = final.callPackage ./pkgs/fonts/sfmono_liga.nix {};
-                    blexmono-liga = final.callPackage ./pkgs/fonts/blexmono_liga.nix {};
+                    sfmono-liga = final.callPackage ./pkgs/fonts/sfmono-liga.nix {};
+                    blexmono-liga = final.callPackage ./pkgs/fonts/blexmono-liga.nix {};
                     corkit = final.callPackage ./dev/corkit.nix { py-pkgs = py-pkgs; };
                     lightorch = final.callPackage ./dev/lightorch.nix { py-pkgs = py-pkgs; };
-                    nvidia_nemo = final.callPackage ./dev/nemo.nix {py-pkgs = py-pkgs;};
-                    nvidia_physicsnemo = final.callPackage ./dev/physicsnemo.nix {py-pkgs = py-pkgs;};
-                    nvidia_nemo_guardrails = final.callPackage ./dev/nemo_guardrails.nix {py-pkgs = py-pkgs; };
-                    langchain_milvus = final.callPackage ./dev/langchain_milvus.nix {py-pkgs = py-pkgs; };
+                    nemo = final.callPackage ./dev/nemo.nix {py-pkgs = py-pkgs;};
+                    physicsnemo = final.callPackage ./dev/physicsnemo.nix {py-pkgs = py-pkgs;};
+                    nemo-guardrails = final.callPackage ./dev/nemo-guardrails.nix {py-pkgs = py-pkgs; };
                     starstream = final.callPackage ./dev/starstream.nix {py-pkgs = py-pkgs;};
+                    langchain-mcp-adapters = final.callPackage ./dev/langchain-mcp-adapters.nix {py-pkgs = py-pkgs; };
+                    langchain-milvus = final.callPackage ./dev/langchain-milvus.nix {py-pkgs = py-pkgs; };
+                    langchain-nvidia-ai-endpoints = final.callPackage ./dev/langchain-nvidia-ai-endpoints.nix {py-pkgs = py-pkgs; };
+                    langchain-nvidia-trt = final.callPackage ./dev/langchain-nvidia-trt.nix {py-pkgs = py-pkgs; };
+                    langgraph-checkpoint-postgres = final.callPackage ./dev/langgraph-checkpoint-postgres.nix {py-pkgs = py-pkgs; };
+                    langgraph-swarm = final.callPackage ./dev/langgraph-swarm.nix {py-pkgs = py-pkgs; };
+                    langmem = final.callPackage ./dev/langmem.nix {py-pkgs = py-pkgs; };
                 };
         in
             flake-utils.lib.eachDefaultSystem (system:
@@ -38,15 +44,20 @@
                         blexmono-liga
                         corkit
                         lightorch
-                        nvidia_nemo
-                        nvidia_nemo_guardrails
-                        nvidia_physicsnemo
-                        langchain_milvus
-                        starstream;
+                        nemo
+                        physicsnemo
+                        nemo-guardrails
+                        starstream
+                        langchain-mcp-adapters
+                        langchain-milvus
+                        langchain-nvidia-ai-endpoints
+                        langchain-nvidia-trt
+                        langgraph-checkpoint-postgres
+                        langgraph-swarm
+                        langmem;
                     };
                 }
             ) // {
             overlays.default = overlay;
         };
 }
-
