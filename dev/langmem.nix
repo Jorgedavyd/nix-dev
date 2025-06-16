@@ -1,4 +1,4 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, py-pkgs, fetchFromGitHub, langgraph-checkpoint }:
 
 py-pkgs.buildPythonPackage rec {
     pname = "langmem";
@@ -13,8 +13,14 @@ py-pkgs.buildPythonPackage rec {
     };
 
     dependencies = with py-pkgs; [
+        langchain
+        langgraph
         langchain-core
-        pymilvus
+        langchain-openai
+        langchain-anthropic
+        langsmith
+        langgraph-checkpoint
+        trustcall
     ];
 
     nativeBuildInputs = with py-pkgs; [
