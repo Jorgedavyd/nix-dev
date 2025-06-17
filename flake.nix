@@ -19,6 +19,14 @@
                                 sha256 = "sha256-s3Jz16ZXqyUk2yzCUbYna3BUynWZvn0MUZGbQePhRwk=";
                             };
                             dependencies = (old.dependencies or []) ++ [ pyself.python-multipart ];
+                            doCheck = false;
+                            postPatch = ''
+                                substituteInPlace pyproject.toml \
+                                --replace ', "uv-dynamic-versioning"' "" \
+                                --replace 'dynamic = ["version"]' 'version = "${version}"'
+                                substituteInPlace tests/client/test_stdio.py \
+                                --replace '/usr/bin/tee' '${prev.lib.getExe' pysuper.coreutils "tee"}'
+                            '';
                         });
 
                         corkit = pyself.callPackage ./dev/python/corkit.nix { };
