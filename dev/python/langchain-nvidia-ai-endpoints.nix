@@ -14,7 +14,6 @@ poetry-core
 buildPythonPackage rec {
     pname = "langchain-nvidia-ai-endpoints";
     version = "0.3.10";
-    pyproject = true;
     format = "pyproject";
 
     src = fetchFromGitHub {
