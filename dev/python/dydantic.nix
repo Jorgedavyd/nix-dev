@@ -9,6 +9,7 @@ email-validator,
 
 ## build inputs
 poetry-core,
+pdm-backend
 }:
 buildPythonPackage rec {
     pname = "dydantic";
@@ -29,6 +30,7 @@ buildPythonPackage rec {
 
     nativeBuildInputs = [
         poetry-core
+        pdm-backend
     ];
 
     doCheck = false;
