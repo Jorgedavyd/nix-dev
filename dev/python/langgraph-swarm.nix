@@ -23,7 +23,7 @@ buildPythonPackage rec {
         sha256 = "sha256-iqnBmC4kvypUrKI2D1ud6hnvWe/MX/eyGkxf3phul+4=";
     };
 
-    dependencies = [
+    propagatedBuildInputs = [
         langchain-core
         langgraph
     ];
