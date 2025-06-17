@@ -29,6 +29,8 @@
                                     --replace-fail 'dynamic = ["version"]' \
                                     'version = "${version}"' \
                                     || true  # Ignore substitution failures
+
+                                rm -rf static  # Remove the static directory to avoid discovery
                             '';
                         });
 
