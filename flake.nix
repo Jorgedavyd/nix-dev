@@ -16,7 +16,7 @@
                                 owner = "modelcontextprotocol";
                                 repo = "python-sdk";
                                 rev = "v${version}";
-                                sha256 = "sha256-s3Jz16ZXqyUk2yzCUbYna3BUynWZvn0MUZGbQePhRwk=";
+                                sha256 = "sha256-VXbu/wHbXGS+cISJVUgCVEpTmZc0VfckNRoMj3GDi/A=";
                             };
                             dependencies = (old.dependencies or []) ++ [ pyself.python-multipart ];
                             nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [ pyself.setuptools ];
