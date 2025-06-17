@@ -13,7 +13,7 @@
                         mcp = pysuper.mcp.overridePythonAttrs (old: rec {
                             version = "1.9.4";
                             src = prev.fetchFromGitHub {
-                                owner = "mcp";
+                                owner = "modelcontextprotocol";
                                 repo = "python-sdk";
                                 rev = "v${version}";
                                 sha256 = "sha256-s3Jz16ZXqyUk2yzCUbYna3BUynWZvn0MUZGbQePhRwk=";
