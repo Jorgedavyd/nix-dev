@@ -16,7 +16,7 @@ buildPythonPackage rec {
         owner = "hinthornw";
         repo = pname;
         rev = "d61267d366cd16aa95ebc90d62824e5c40f253bd";
-        sha256 = "sha256-iqnBmC4kvypUrKI2D1ud6hnvWe/MX/eyGkxf3phul+4=";
+        sha256 = "sha256-V9wVDVsJQyIij8eaZ+o2gVPjzS0ngstwO+kRM1rp8qk=";
     };
 
     dependencies = [
