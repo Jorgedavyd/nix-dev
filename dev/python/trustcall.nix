@@ -2,6 +2,7 @@
 lib,
 fetchFromGitHub,
 buildPythonPackage,
+setuptools,
 langgraph,
 jsonpatch,
 dydantic
@@ -23,6 +24,10 @@ buildPythonPackage rec {
         langgraph
         jsonpatch
         dydantic
+    ];
+
+    nativeBuildInputs = [
+        setuptools
     ];
 
     doCheck = false;
