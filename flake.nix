@@ -8,30 +8,42 @@
 
     outputs = { self, nixpkgs, flake-utils }:
         let
-            overlay = final: prev:
-                let
-                    py-pkgs = final.python312Packages;
-                in
-                    rec {
-                    sfmono-liga = final.callPackage ./pkgs/fonts/sfmono-liga.nix {};
-                    blexmono-liga = final.callPackage ./pkgs/fonts/blexmono-liga.nix {};
-                    corkit = final.callPackage ./dev/corkit.nix { py-pkgs = py-pkgs; };
-                    lightorch = final.callPackage ./dev/lightorch.nix { py-pkgs = py-pkgs; };
-                    nemo = final.callPackage ./dev/nemo.nix {py-pkgs = py-pkgs;};
-                    physicsnemo = final.callPackage ./dev/physicsnemo.nix {py-pkgs = py-pkgs;};
-                    nemo-guardrails = final.callPackage ./dev/nemo-guardrails.nix {py-pkgs = py-pkgs; };
-                    starstream = final.callPackage ./dev/starstream.nix {py-pkgs = py-pkgs;};
-                    mcp = final.callPackage ./dev/mcp.nix {py-pkgs = py-pkgs;};
-                    langchain-mcp-adapters = final.callPackage ./dev/langchain-mcp-adapters.nix {py-pkgs = py-pkgs; mcp = mcp; };
-                    langchain-milvus = final.callPackage ./dev/langchain-milvus.nix {py-pkgs = py-pkgs; };
-                    langchain-nvidia-ai-endpoints = final.callPackage ./dev/langchain-nvidia-ai-endpoints.nix {py-pkgs = py-pkgs; };
-                    langgraph-checkpoint = final.callPackage ./dev/langgraph-checkpoint.nix {py-pkgs = py-pkgs; };
-                    langgraph-checkpoint-postgres = final.callPackage ./dev/langgraph-checkpoint-postgres.nix {py-pkgs = py-pkgs; };
-                    langgraph-swarm = final.callPackage ./dev/langgraph-swarm.nix {py-pkgs = py-pkgs; };
-                    dydantic = final.callPackage ./dev/dydantic.nix { poetry2nix = poetry2nix; };
-                    trustcall = final.callPackage ./dev/trustcall.nix { poetry2nix = poetry2nix; };
-                    langmem = final.callPackage ./dev/langmem.nix {py-pkgs = py-pkgs; langgraph-checkpoint = langgraph-checkpoint; trustcall = trustcall; };
+            pythonPackageOverrides = final: prev: {
+                mcp = prev.mcp.overridePythonAttrs (old: rec {
+                    version = "1.9.4";
+                    src = final.fetchFromGitHub {
+                        owner = "mcp";
+                        repo = "python-sdk";
+                        rev = "v${version}";
+                        sha256 = lib.fakeSha256;
+                    };
+                    dependencies = old.dependencies ++ [ final.python-multipart ];
+                });
+                corkit = final.callPackage ./dev/python/corkit.nix { };
+                dydantic = final.callPackage ./dev/python/dydantic.nix { };
+                langchain-mcp-adapters = final.callPackage ./dev/python/langchain-mcp-adapters.nix { };
+                langchain-milvus = final.callPackage ./dev/python/langchain-milvus.nix { };
+                langchain-nvidia-ai-endpoints = final.callPackage ./dev/python/langchain-nvidia-ai-endpoints.nix { };
+                langgraph-swarm = final.callPackage ./dev/python/langgraph-swarm.nix { };
+                langmem = final.callPackage ./dev/python/langmem.nix { };
+                lightorch = final.callPackage ./dev/python/lightorch.nix { };
+                nemo-guardrails = final.callPackage ./dev/python/nemo-guardrails.nix { };
+                nemo-toolkit = final.callPackage ./dev/python/nemo.nix { };
+                nvidia-physicsnemo = final.callPackage ./dev/python/physicsnemo.nix { };
+                starstream = final.callPackage ./dev/python/starstream.nix { };
+                trustcall = final.callPackage ./dev/python/trustcall.nix { };
+            };
+
+            overlay = final: prev: {
+                sfmono-liga = final.callPackage ./pkgs/fonts/sfmono-liga.nix { };
+                blexmono-liga = final.callPackage ./pkgs/fonts/blexmono-liga.nix { };
+
+                python312 = prev.python312.override {
+                    packageOverrides = pythonPackageOverrides;
                 };
+
+                python312Packages = prev.python312Packages // (pythonPackageOverrides final.python312Packages prev.python312Packages);
+            };
         in
             flake-utils.lib.eachDefaultSystem (system:
                 let
@@ -40,33 +52,27 @@
                         overlays = [ overlay ];
                         config.allowUnfree = true;
                     };
-
-                    python = pkgs.python312.override {
-                        self = python;
-                        packageOverrides = lib.composeManyExtensions (defaultOverrides ++ [ packageOverrides ]);
-                    };
-
                 in {
                     packages = {
-                        inherit (pkgs)
-                        sfmono-liga
-                        blexmono-liga
+                        inherit (pkgs) sfmono-liga blexmono-liga;
+                        inherit (pkgs.python312Packages)
                         corkit
-                        lightorch
-                        nemo
-                        physicsnemo
-                        nemo-guardrails
-                        starstream
+                        dydantic
                         langchain-mcp-adapters
                         langchain-milvus
                         langchain-nvidia-ai-endpoints
-                        langchain-nvidia-trt
-                        langgraph-checkpoint-postgres
                         langgraph-swarm
-                        langmem;
+                        langmem
+                        lightorch
+                        nemo-guardrails
+                        nemo-toolkit
+                        nvidia-physicsnemo
+                        starstream
+                        trustcall;
                     };
                 }
             ) // {
             overlays.default = overlay;
+            overlays.pythonPackages = pythonPackageOverrides;
         };
 }

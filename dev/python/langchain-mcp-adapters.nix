@@ -24,15 +24,7 @@ buildPythonPackage rec {
 
     dependencies = [
         langchain-core
-        (mcp.overrideAttrs (old: rec {
-            version = "1.9.4";
-            src = fetchFromGitHub {
-                owner = "mcp";
-                repo = "python-sdk";
-                rev = "v${version}";
-                sha256 = lib.fakeSha256;
-            };
-        }))
+        mcp
     ];
 
     nativeBuildInputs = [
