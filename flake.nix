@@ -15,7 +15,7 @@
                         owner = "mcp";
                         repo = "python-sdk";
                         rev = "v${version}";
-                        sha256 = lib.fakeSha256;
+                        sha256 = final.lib.fakeSha256;
                     };
                     dependencies = old.dependencies ++ [ final.python-multipart ];
                 });
