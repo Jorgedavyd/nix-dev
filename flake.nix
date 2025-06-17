@@ -25,7 +25,7 @@
                                 --replace ', "uv-dynamic-versioning"' "" \
                                 --replace 'dynamic = ["version"]' 'version = "${version}"'
                                 substituteInPlace tests/client/test_stdio.py \
-                                --replace '/usr/bin/tee' '${prev.lib.getExe' pysuper.coreutils "tee"}'
+                                --replace '/usr/bin/tee' '${prev.lib.getExe' prev.coreutils "tee"}'
                             '';
                         });
 
