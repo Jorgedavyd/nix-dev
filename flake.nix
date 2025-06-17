@@ -22,10 +22,10 @@
                             doCheck = false;
                             postPatch = ''
                                 substituteInPlace pyproject.toml \
-                                --replace ', "uv-dynamic-versioning"' "" \
-                                --replace 'dynamic = ["version"]' 'version = "${version}"'
-                                substituteInPlace tests/client/test_stdio.py \
-                                --replace '/usr/bin/tee' '${prev.lib.getExe' prev.coreutils "tee"}'
+                                    --replace-fail 'requires = ["hatchling", "uv-dynamic-versioning"]' \
+                                    'requires = ["hatchling"]' \
+                                    --replace-fail 'dynamic = ["version"]' \
+                                    'version = "${version}"'
                             '';
                         });
 
