@@ -48,11 +48,12 @@
                         config.allowUnfree = true;
                     };
                 in {
-                    overlays.default = overlays;
                     packages = {
                         inherit (pkgs) sfmono-liga blexmono-liga;
                         inherit (pkgs.python312.pkgs) mcp corkit dydantic langchain-mcp-adapters langchain-milvus langchain-nvidia-ai-endpoints langgraph-swarm langmem lightorch nemo-guardrails nemo-toolkit nvidia-physicsnemo starstream trustcall;
                     };
+                } // {
+                    overlays.default = overlays;
                 }
             );
 }
