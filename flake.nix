@@ -19,6 +19,7 @@
                                 sha256 = "sha256-s3Jz16ZXqyUk2yzCUbYna3BUynWZvn0MUZGbQePhRwk=";
                             };
                             dependencies = (old.dependencies or []) ++ [ pyself.python-multipart ];
+                            nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [ pyself.setuptools ];
                             doCheck = false;
 
                             postPatch = ''
