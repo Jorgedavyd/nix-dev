@@ -28,7 +28,7 @@ buildPythonPackage rec {
     doCheck = false;
 
     meta = with lib; {
-        description = "A Python library for creating swarm-style multi-agent systems using LangGraph.";
+        description = "A python library for reliable JSON parsing within the agentic realm.";
         homepage = "https://github.com/hinthornw/trustcall";
         license = licenses.mit;
         maintainers = with maintainers; [ ];
