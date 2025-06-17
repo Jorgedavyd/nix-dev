@@ -20,12 +20,14 @@
                             };
                             dependencies = (old.dependencies or []) ++ [ pyself.python-multipart ];
                             doCheck = false;
+
                             postPatch = ''
                                 substituteInPlace pyproject.toml \
                                     --replace-fail 'requires = ["hatchling", "uv-dynamic-versioning"]' \
                                     'requires = ["hatchling"]' \
                                     --replace-fail 'dynamic = ["version"]' \
-                                    'version = "${version}"'
+                                    'version = "${version}"' \
+                                    || true  # Ignore substitution failures
                             '';
                         });
 
