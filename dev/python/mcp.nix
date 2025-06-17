@@ -1,9 +1,28 @@
-{ lib, py-pkgs, fetchFromGitHub, git }:
+{
+lib,
+py-pkgs,
+fetchFromGitHub,
 
+## dependencies
+anyio,
+uvicorn,
+httpx,
+httpx-sse,
+starlette,
+python-multipart,
+sse-starlette,
+pydantic,
+pydantic-settings,
+
+## build inputs
+wheel,
+hatchling,
+uv-dynamic-versioning,
+}:
 py-pkgs.buildPythonPackage rec {
     pname = "mcp";
     version = "v1.9.4";
-    format = "pyproject";
+    pyproject = true;
 
     src = fetchFromGitHub {
         owner = "modelcontextprotocol";
@@ -12,7 +31,7 @@ py-pkgs.buildPythonPackage rec {
         sha256 = "sha256-VXbu/wHbXGS+cISJVUgCVEpTmZc0VfckNRoMj3GDi/A=";
     };
 
-    dependencies = with py-pkgs; [
+    dependencies = [
         anyio
         uvicorn
         httpx
@@ -24,11 +43,10 @@ py-pkgs.buildPythonPackage rec {
         pydantic-settings
     ];
 
-    nativeBuildInputs = with py-pkgs; [
+    nativeBuildInputs = [
         wheel
         hatchling
         uv-dynamic-versioning
-        git
     ];
 
     doCheck = false;

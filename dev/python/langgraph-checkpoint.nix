@@ -1,6 +1,6 @@
-{ lib, py-pkgs, fetchPypi }:
+{ lib, fetchPypi, buildPythonPackage}:
 
-py-pkgs.buildPythonPackage rec {
+buildPythonPackage rec {
     pname = "langgraph-checkpoint";
     version = "2.0.26";
     src = fetchPypi {

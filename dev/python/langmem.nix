@@ -1,6 +1,23 @@
-{ lib, py-pkgs, fetchFromGitHub, langgraph-checkpoint, trustcall }:
+{
+buildPythonPackage,
+lib,
+fetchFromGitHub,
 
-py-pkgs.buildPythonPackage rec {
+## dependencies
+langgraph-checkpoint,
+trustcall,
+langchain,
+langgraph,
+langchain-core,
+langchain-openai,
+langchain-anthropic,
+langsmith,
+
+## build inputs
+hatchling
+}:
+
+buildPythonPackage rec {
     pname = "langmem";
     version = "0.0.27";
     format = "pyproject";
@@ -12,7 +29,7 @@ py-pkgs.buildPythonPackage rec {
         sha256 = "sha256-gn4XGn2iuYxHeERbBpE5Rf/6eGdEJAGFXku2WRYX3I0=";
     };
 
-    dependencies = with py-pkgs; [
+    dependencies = [
         langchain
         langgraph
         langchain-core
@@ -23,9 +40,8 @@ py-pkgs.buildPythonPackage rec {
         trustcall
     ];
 
-    nativeBuildInputs = with py-pkgs; [
-        poetry-core
-        wheel
+    nativeBuildInputs = [
+        hatchling
     ];
 
     doCheck = false;

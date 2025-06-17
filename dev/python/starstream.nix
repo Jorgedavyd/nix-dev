@@ -1,13 +1,17 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{
+lib,
+fetchFromGitHub,
+buildPythonPackage,
+}:
 
-py-pkgs.buildPythonPackage rec {
-    pname = "corkit";
-    version = "1.0.16";
+buildPythonPackage rec {
+    pname = "starstream";
+    version = "1.1.3";
     src = fetchFromGitHub {
         owner = "jorgedavyd";
         repo = pname;
         rev = version;
-        sha256 = "11g235cyisnhami5ldjzi66l9za1z7ssjk3j8jz2iivi97gax9h7";
+        sha256 = "11p2pnr6q3w3zvi96agssy7rsyqcz8cr2jz1bbmmjcg22d6qbjf3";
     };
     format = "setuptools";
     meta = {
@@ -15,4 +19,3 @@ py-pkgs.buildPythonPackage rec {
         license = lib.licenses.mit;
     };
 }
-

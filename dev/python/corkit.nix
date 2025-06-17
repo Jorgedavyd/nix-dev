@@ -1,13 +1,13 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{ lib, fetchFromGitHub, buildPythonPackage }:
 
-py-pkgs.buildPythonPackage rec {
-    pname = "lightorch";
-    version = "0.0.6";
+buildPythonPackage rec {
+    pname = "corkit";
+    version = "1.0.16";
     src = fetchFromGitHub {
         owner = "jorgedavyd";
         repo = pname;
         rev = version;
-        sha256 = "1d98n06n9y3hra4v70jm76l31md9rcvb4m7w768v4gzhf6920wxy";
+        sha256 = "11g235cyisnhami5ldjzi66l9za1z7ssjk3j8jz2iivi97gax9h7";
     };
     format = "setuptools";
     meta = {

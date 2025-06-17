@@ -1,13 +1,17 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{
+buildPythonPackage,
+lib,
+fetchFromGitHub,
+}:
 
-py-pkgs.buildPythonPackage rec {
-    pname = "starstream";
-    version = "1.1.3";
+buildPythonPackage rec {
+    pname = "lightorch";
+    version = "0.0.6";
     src = fetchFromGitHub {
         owner = "jorgedavyd";
         repo = pname;
         rev = version;
-        sha256 = "11p2pnr6q3w3zvi96agssy7rsyqcz8cr2jz1bbmmjcg22d6qbjf3";
+        sha256 = "1d98n06n9y3hra4v70jm76l31md9rcvb4m7w768v4gzhf6920wxy";
     };
     format = "setuptools";
     meta = {

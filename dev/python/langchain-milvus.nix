@@ -1,28 +1,37 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{
+lib,
+fetchFromGitHub,
+buildPythonPackage,
 
-py-pkgs.buildPythonPackage rec {
+## dependencies
+langchain-core,
+pymilvus,
+
+## build inputs
+poetry-core
+}:
+
+buildPythonPackage rec {
     pname = "langchain-milvus";
-    version = "v0.2.0";
+    version = "0.2.0";
     format = "pyproject";
 
     src = fetchFromGitHub {
         owner = "langchain-ai";
         repo = "langchain-milvus";
-        rev = "libs/milvus/${version}";
+        rev = "libs/milvus/v${version}";
         sha256 = "sha256-dGqOXwHfXEQQraav+i/LhbeCKqH2Eg9TWZh8mHDjaxo=";
     };
 
     sourceRoot = "source/libs/milvus";
 
-
-    dependencies = with py-pkgs; [
+    dependencies = [
         langchain-core
         pymilvus
     ];
 
-    nativeBuildInputs = with py-pkgs; [
+    nativeBuildInputs = [
         poetry-core
-        wheel
     ];
 
     doCheck = false;

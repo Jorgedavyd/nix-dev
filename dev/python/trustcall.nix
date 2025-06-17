@@ -1,31 +1,35 @@
-{ lib, py-pkgs, fetchFromGitHub }:
+{
+lib,
+fetchFromGitHub,
+buildPythonPackage,
+langgraph,
+jsonpatch,
+dydantic
+}:
 
-py-pkgs.buildPythonPackage rec {
-    pname = "langgraph-swarm-py";
-    version = "langgraph-swarm==0.0.11";
-    format = "pyproject";
+buildPythonPackage rec {
+    pname = "trustcall";
+    version = "0.0.39";
+    pyproject = true;
 
     src = fetchFromGitHub {
-        owner = "langchain-ai";
+        owner = "hinthornw";
         repo = pname;
-        rev = version;
+        rev = "d61267d366cd16aa95ebc90d62824e5c40f253bd";
         sha256 = "sha256-iqnBmC4kvypUrKI2D1ud6hnvWe/MX/eyGkxf3phul+4=";
     };
 
-    dependencies = with py-pkgs; [
-        langchain-core
+    dependencies = [
         langgraph
-    ];
-
-    nativeBuildInputs = with py-pkgs; [
-        pdm-backend
+        jsonpatch
+        dydantic
     ];
 
     doCheck = false;
 
     meta = with lib; {
         description = "A Python library for creating swarm-style multi-agent systems using LangGraph.";
-        homepage = "https://github.com/langchain-ai/langgraph-swarm-py";
+        homepage = "https://github.com/hinthornw/trustcall";
         license = licenses.mit;
         maintainers = with maintainers; [ ];
         platforms = platforms.all;

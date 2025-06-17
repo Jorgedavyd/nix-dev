@@ -1,23 +1,33 @@
-{ lib, py-pkgs, fetchFromGitHub, mcp}:
+{
+lib,
+buildPythonPackage,
+fetchFromGitHub,
+## dependencies
+mcp,
+langchain-core,
+## build inputs
+pdm-backend
+}:
 
-py-pkgs.buildPythonPackage rec {
+buildPythonPackage rec {
     pname = "langchain-mcp-adapters";
-    version = "langchain-mcp-adapters==0.1.7";
+    version = "0.1.7";
+    pyproject = true;
     format = "pyproject";
 
     src = fetchFromGitHub {
         owner = "langchain-ai";
         repo = pname;
-        rev = version;
+        rev =  "langchain-mcp-adapters==${version}";
         sha256 = "sha256-s3Jz16ZXqyUk2yzCUbYna3BUynWZvn0MUZGbQePhRwk=";
     };
 
-    dependencies = with py-pkgs; [
+    dependencies = [
         langchain-core
         mcp
     ];
 
-    nativeBuildInputs = with py-pkgs; [
+    nativeBuildInputs = [
         pdm-backend
     ];
 

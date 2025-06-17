@@ -9,6 +9,27 @@
 
     outputs = { self, nixpkgs, flake-utils, poetry2nix }:
         let
+            defaultOverrides = [
+                (self: super: {
+                    email-validator = super.email-validator.overridePythonAttrs (oldAttrs: rec {
+                        version = "2.1.2";
+                        src = fetchPypi {
+                            inherit version;
+                            pname = "email_validator";
+                            hash = "sha256-y2kPNExhenFPIuZq53FEWhzrRoIRUt+OFlxfmjZFgrc=";
+                        };
+                    });
+                })
+            ];
+
+            python_ = python.override {
+                self = python;
+                packageOverrides = lib.composeManyExtensions (defaultOverrides ++ [ packageOverrides ]);
+            };
+            python = .python312.override {
+                self = python;
+                packageOverrides = lib.composeManyExtensions (defaultOverrides ++ [ packageOverrides ]);
+            };
             overlay = final: prev:
                 let
                     py-pkgs = final.python312Packages;
@@ -41,6 +62,12 @@
                         overlays = [ overlay ];
                         config.allowUnfree = true;
                     };
+
+                    python = pkgs.python312.override {
+                        self = python;
+                        packageOverrides = lib.composeManyExtensions (defaultOverrides ++ [ packageOverrides ]);
+                    };
+
                 in {
                     packages = {
                         inherit (pkgs)
