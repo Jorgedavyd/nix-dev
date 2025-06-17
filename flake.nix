@@ -12,14 +12,15 @@
                     packageOverrides = pyself: pysuper: {
                         mcp = pysuper.mcp.overridePythonAttrs (old: rec {
                             version = "1.9.4";
-                            src = self.fetchFromGitHub {
+                            src = super.fetchFromGitHub {
                                 owner = "mcp";
                                 repo = "python-sdk";
                                 rev = "v${version}";
                                 sha256 = "sha256-s3Jz16ZXqyUk2yzCUbYna3BUynWZvn0MUZGbQePhRwk=";
                             };
-                            dependencies = old.dependencies or [] ++ [ pyself.python-multipart ];
+                            dependencies = (old.dependencies or []) ++ [ pyself.python-multipart ];
                         });
+
                         corkit = pyself.callPackage ./dev/python/corkit.nix { };
                         dydantic = pyself.callPackage ./dev/python/dydantic.nix { };
                         langchain-mcp-adapters = pyself.callPackage ./dev/python/langchain-mcp-adapters.nix { };
@@ -35,11 +36,12 @@
                         trustcall = pyself.callPackage ./dev/python/trustcall.nix { };
                     };
                 };
+
                 sfmono-liga = super.callPackage ./pkgs/fonts/sfmono-liga.nix { };
                 blexmono-liga = super.callPackage ./pkgs/fonts/blexmono-liga.nix { };
             });
-        in
-            {
-                overlays.default = overlays;
-            };
+        in {
+            overlays.default = [ overlays ];
+        };
 }
+
