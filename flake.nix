@@ -7,12 +7,12 @@
 
     outputs = { self, nixpkgs, ... }:
         let
-            overlays = (self: super: {
-                python312 = super.python312.override {
+            overlays = (final: prev: {
+                python312 = prev.python312.override {
                     packageOverrides = pyself: pysuper: {
                         mcp = pysuper.mcp.overridePythonAttrs (old: rec {
                             version = "1.9.4";
-                            src = super.fetchFromGitHub {
+                            src = prev.fetchFromGitHub {
                                 owner = "mcp";
                                 repo = "python-sdk";
                                 rev = "v${version}";
@@ -37,11 +37,11 @@
                     };
                 };
 
-                sfmono-liga = super.callPackage ./pkgs/fonts/sfmono-liga.nix { };
-                blexmono-liga = super.callPackage ./pkgs/fonts/blexmono-liga.nix { };
+                sfmono-liga = prev.callPackage ./pkgs/fonts/sfmono-liga.nix { };
+                blexmono-liga = prev.callPackage ./pkgs/fonts/blexmono-liga.nix { };
             });
         in {
-            overlays.default = [ overlays ];
+            overlays.default = overlays;
         };
 }
 
