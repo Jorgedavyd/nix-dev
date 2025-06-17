@@ -4,32 +4,10 @@
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
         flake-utils.url = "github:numtide/flake-utils";
-        poetry2nix.url = "github:nix-community/poetry2nix";
     };
 
-    outputs = { self, nixpkgs, flake-utils, poetry2nix }:
+    outputs = { self, nixpkgs, flake-utils }:
         let
-            defaultOverrides = [
-                (self: super: {
-                    email-validator = super.email-validator.overridePythonAttrs (oldAttrs: rec {
-                        version = "2.1.2";
-                        src = fetchPypi {
-                            inherit version;
-                            pname = "email_validator";
-                            hash = "sha256-y2kPNExhenFPIuZq53FEWhzrRoIRUt+OFlxfmjZFgrc=";
-                        };
-                    });
-                })
-            ];
-
-            python_ = python.override {
-                self = python;
-                packageOverrides = lib.composeManyExtensions (defaultOverrides ++ [ packageOverrides ]);
-            };
-            python = .python312.override {
-                self = python;
-                packageOverrides = lib.composeManyExtensions (defaultOverrides ++ [ packageOverrides ]);
-            };
             overlay = final: prev:
                 let
                     py-pkgs = final.python312Packages;
