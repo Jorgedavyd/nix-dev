@@ -10,7 +10,7 @@ dydantic
 buildPythonPackage rec {
     pname = "trustcall";
     version = "0.0.39";
-    pyproject = true;
+    format = "pyproject";
 
     src = fetchFromGitHub {
         owner = "hinthornw";

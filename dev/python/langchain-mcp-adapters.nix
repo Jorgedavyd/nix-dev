@@ -12,7 +12,6 @@ pdm-backend
 buildPythonPackage rec {
     pname = "langchain-mcp-adapters";
     version = "0.1.7";
-    pyproject = true;
     format = "pyproject";
 
     src = fetchFromGitHub {

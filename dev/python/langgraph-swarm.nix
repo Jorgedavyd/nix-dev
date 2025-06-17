@@ -14,7 +14,7 @@ pdm-backend
 buildPythonPackage rec {
     pname = "langgraph-swarm-py";
     version = "0.0.11";
-    pyproject = true;
+    format = "pyproject";
 
     src = fetchFromGitHub {
         owner = "langchain-ai";
