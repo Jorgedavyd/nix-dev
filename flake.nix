@@ -48,7 +48,7 @@
 
                 sfmono-liga = prev.callPackage ./pkgs/fonts/sfmono-liga.nix { };
                 blexmono-liga = prev.callPackage ./pkgs/fonts/blexmono-liga.nix { };
-                jdt-language-server = prev.callPackage ./dev/java/jdt-language-server.nix { };
+                jdt-language-server-upstream = prev.callPackage ./dev/java/jdt-language-server.nix { };
             });
         in {
             overlays.default = overlays;
