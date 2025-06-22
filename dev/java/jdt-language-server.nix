@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
     src = fetchzip {
         url = "https://download.eclipse.org/jdtls/milestones/${version}/jdt-language-server-${version}-${timestamp}.tar.gz";
-        sha256 = "sha256-uK8ZJcs7gX/RBh4ApF/7xqynaBnYsvWTliYAnr9DL8c=";
+        sha256 = "sha256-q1zBsMtAUEQLpWyf2g3F6W3ZMtKm5Yu1QW5TcW3+prY=";
         stripRoot = false;
     };
 
