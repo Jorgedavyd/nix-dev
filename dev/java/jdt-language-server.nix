@@ -1,20 +1,29 @@
-{ stdenv, fetchurl }:
-stdenv.mkDerivation {
+{ lib, stdenv, fetchzip, python3 }:
+stdenv.mkDerivation rec {
     pname = "jdt-language-server";
     version = "1.9.0";
-    src = fetchurl {
-        url = "https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz";
+    timestamp = "202203031534";
+
+    src = fetchzip {
+        url = "https://download.eclipse.org/jdtls/milestones/${version}/jdt-language-server-${version}-${timestamp}.tar.gz";
         sha256 = "sha256-uK8ZJcs7gX/RBh4ApF/7xqynaBnYsvWTliYAnr9DL8c=";
+        stripRoot = false;
     };
-    unpackPhase = ''
-        tar -xf $src
+
+    installPhase = ''
+    install -Dm444 -t $out/plugins plugins/*
+    install -Dm444 -t $out/features features/*
+    install -Dm444 -t $out/config_linux config_linux/*
+    install -Dm555 -t $out/bin bin/jdtls
+    install -Dm444 -t $out/bin bin/jdtls.py
     '';
 
-    dontConfigure = true;
-    dontPatch = true;
+    buildInputs = [ python3 ];
 
-    meta = {
-        description = "Java Development Tools";
-        license = stdenv.license.epl1;
+    meta = with lib; {
+        homepage = "https://github.com/eclipse/eclipse.jdt.ls";
+        description = "Java language server";
+        sourceProvenance = with sourceTypes; [ binaryBytecode ];
+        license = licenses.epl20;
     };
 }
