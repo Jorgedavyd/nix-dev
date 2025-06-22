@@ -1,11 +1,7 @@
 {
     description = "Personal derivations for specific packages";
 
-    inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    };
-
-    outputs = { self, nixpkgs, ... }:
+    outputs = _:
         let
             overlays = (final: prev: {
                 python312 = prev.python312.override {
@@ -52,7 +48,7 @@
 
                 sfmono-liga = prev.callPackage ./pkgs/fonts/sfmono-liga.nix { };
                 blexmono-liga = prev.callPackage ./pkgs/fonts/blexmono-liga.nix { };
-                jdt-language-server = prev.callPackage ./pkgs/jdt-language-server.nix { };
+                jdt-language-server = prev.callPackage ./dev/java/jdt-language-server.nix { };
             });
         in {
             overlays.default = overlays;
